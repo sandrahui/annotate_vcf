@@ -186,7 +186,7 @@ def extract_variant_info(variant_info, alt):
                     pop_freqs_str = ",".join(pop_freqs)
                 id = "."
                 if("id" in coloc_variants):
-                    id = coloc_variants["id"],
+                    id = coloc_variants["id"]
 
                 # collect into a dictionary
                 coloc_variants_info_list.append({
@@ -213,7 +213,7 @@ def extract_variant_info(variant_info, alt):
             # then skip
             if alt != transcript["variant_allele"]:
                 continue
-            
+
             # collect useful information into a dictionary
             transcript_info_list.append({
                 "gene": transcript["gene_symbol"],
@@ -245,7 +245,10 @@ if __name__ == "__main__":
     client = EnsemblRestClient(server="http://grch37.rest.ensembl.org/")
 
     # print header
-    print(f"chrom\tpos\tref\talt\tqual\tfilter\tvariant_type\ttotal_seq_depth\tnum_alt_reads\tperc_alt_reads\tperc_ref_reads\tminor_allele_freq\tid\tpopulation_frequencies\tgene\ttranscript_id\tvariant_impact\tvariant_consequences")
+    print(f"chrom\tpos\tref\talt\tqual\tfilter\tvariant_type\ttotal_seq_depth"
+          f"\tnum_alt_reads\tperc_alt_reads\tperc_ref_reads\tminor_allele_freq"
+          f"\tid\tpopulation_frequencies\tgene\ttranscript_id\tvariant_impact"
+          f"\tvariant_consequences")
 
     # read in vcf file
     with(open(vcf_filename) as vcf_file):
@@ -292,4 +295,9 @@ if __name__ == "__main__":
                         transcript_id = transcript["transcript_id"]
                         impact = transcript["impact"]
                         consequences = transcript["consequences"]
-                        print(f"{chrom}\t{pos}\t{ref}\t{alt}\t{qual}\t{filter}\t{variant_type}\t{seq_depth}\t{num_alt_reads}\t{perc_alt_reads}\t{1-perc_alt_reads}\t{minor_allele_freq}\t{id}\t{pop_freqs}\t{gene}\t{transcript_id}\t{impact}\t{consequences}")
+                        print(f"{chrom}\t{pos}\t{ref}\t{alt}\t{qual}\t{filter}"
+                              f"\t{variant_type}\t{seq_depth}\t{num_alt_reads}"
+                              f"\t{perc_alt_reads}\t{1-perc_alt_reads}"
+                              f"\t{minor_allele_freq}\t{id}\t{pop_freqs}"
+                              f"\t{gene}\t{transcript_id}\t{impact}"
+                              f"\t{consequences}")
